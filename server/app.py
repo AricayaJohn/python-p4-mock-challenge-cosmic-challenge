@@ -20,11 +20,18 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 
+api = Api(app)
 
 @app.route('/')
 def home():
     return '<h1>Cosmic Coding Challenge</h1>'
 
+class Scientists(Resource):
+    def get(self):
+        scientists = Scientist.query.all()
+        return [scientist.to_dict(only=('id', 'name', 'field_of_study')) for scientist in scientists]
+
+api.add_resource(Scientists, '/scientists')
 
 if __name__ == '__main__':
     app.run(port=5555, debug=True)
