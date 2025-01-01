@@ -23,7 +23,7 @@ db.init_app(app)
 
 @app.route('/')
 def home():
-    return ''
+    return '<h1>Cosmic Coding Challenge</h1>'
 
 
 if __name__ == '__main__':
